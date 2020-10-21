@@ -37,10 +37,10 @@ export class SidebarActionUserComponent implements OnChanges {
     {
       this.user  = {...this.data};
       this.updateData = Object.entries(this.data).length == 0 ? false: true;
-      this.urlImage = this.user.avatar;
-      this.userForm.controls["username"].setValue(this.user.username);
-      this.userForm.controls["name"].setValue(this.user.name);
-      this.userForm.controls["email"].setValue(this.user.email);
+      this.urlImage = this.user['avatar'];
+      this.userForm.controls["username"].setValue(this.user['username']);
+      this.userForm.controls["name"].setValue(this.user['name']);
+      this.userForm.controls["email"].setValue(this.user['email']);
       // this.userForm.controls["birthday"].setValue(new Date(user.birthday).toISOString().substr(0,10));
     }
     else
@@ -97,8 +97,8 @@ export class SidebarActionUserComponent implements OnChanges {
   updateUser()
   {
     const userObj = this.userForm.getRawValue();
-    userObj.id = this.data.id;
-    userObj.avatar = this.urlImage != '' ? this.urlImage : this.data.avatar;
+    userObj.id = this.data['id'];
+    userObj.avatar = this.urlImage != '' ? this.urlImage : this.data['avatar'];
     console.log('update user',userObj);
     this.updateUserEmit.emit(userObj);
     // this.initValue();
