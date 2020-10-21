@@ -59,12 +59,6 @@ export class SidebarActionUserComponent implements OnChanges {
   {
     console.log('init value');
     this.updateData = false;
-    this.user = {
-      avatar: '',
-      username: '',
-      name: '',
-      email: ''
-    }
     this.userForm = new FormGroup({
       username: new FormControl('',[
         Validators.required, Validators.minLength(8), Validators.pattern(this.va_ref)
