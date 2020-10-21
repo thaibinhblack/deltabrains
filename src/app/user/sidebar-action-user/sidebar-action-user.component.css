@@ -1,0 +1,33 @@
+#sidebar-user {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: #33333361;
+    z-index: 998;
+    top: 0;
+    display: none;
+    max-height: 100vh;
+    overflow: hidden;
+}
+#sidebar-user.active {display: block;}
+.sidebar-right {
+    width: 500px;
+    height: 100vh;
+    max-width: 900vh;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+}
+.p-3 {padding: 3rem;}
+.header-sidebar * {font-size: 18px;text-transform: uppercase;}
+.content-sidebar {height: 78vh; max-height: 78vh;}
+.group-avatar {width: 100%;height: 200px; text-align: center; position: relative;}
+.avatar,.upload-avatar {position: absolute;width: 150px;height: 150px;background: #e2e2e2;
+    border-radius: 50%;margin: auto; 
+    transform: translate(-50%,-50%);
+    top: 50%;left: 50%;
+}
+.upload-avatar {z-index: 999;width: 100%;height: 100%;opacity: 0;cursor: pointer;}
+.avatar>img {width: 100%;height: 100%;border-radius: 50%;}

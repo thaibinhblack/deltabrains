@@ -1,0 +1,94 @@
+<div id="main-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 head-list-users">
+        <mdb-icon class="toggle" (click)="toggle = !toggle" fas icon="th"></mdb-icon>
+        <button class=" pd-7 size-small" type="button" mdbBtn color="primary" mdbWavesEffect 
+              (click)="isSidebar = !isSidebar">
+            <mdb-icon fas icon="plus"></mdb-icon>
+             Thêm mới
+        </button>
+      </div>
+    </div>
+    <div *ngIf="toggle  == false" class="row mt-5">
+        <div class="col-md-12 table-users">
+            <table mdbTable>
+                <thead>
+                  <tr>
+                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr mdbTableCol *ngFor="let el of users">
+                    <td>
+                      <img *ngIf="el.avatar != ''" class="avatar" [src]="el.avatar" alt="">
+                    </td>
+                    <td>{{el.username}}</td>
+                    <td>{{el.name}}</td>
+                    <td>{{el.birthday}}</td>
+                    <td>{{el.email}}</td>
+                    <td>
+                      <mdb-icon (click)="EditData(el)" class="btn-icon" fas icon="edit"></mdb-icon>
+                      <mdb-icon (click)="DeleteData(el);basicModal.show()" class="btn-icon" fas icon="trash"></mdb-icon>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div *ngIf="toggle == true" class="row mt-5">
+      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let el of users">
+        
+          <mdb-card>
+            <div class="item-user pd-15">
+              <div class="action">
+                <mdb-icon (click)="EditData(el)" fas icon="pen" class="m-2"></mdb-icon>
+                <mdb-icon (click)="DeleteData(el);basicModal.show()"  fas icon="trash" class="m-2"></mdb-icon>
+              </div>
+              <div class="avatar m-10">
+                <img [src]="el.avatar" alt="avatar">
+              </div>
+              <div class="group-info">
+                <p><strong>Tài khoản: </strong> {{el.username}}</p>
+                <p><strong>Email: </strong> {{el.email}}</p>
+                <p><strong>Họ & Tên: </strong> {{el.name}}</p>
+                <p><strong>Ngày sinh: </strong> {{el.birthday}}</p>
+              </div>
+            </div>
+        </mdb-card>
+      </div>
+    </div>
+</div>
+<div mdbModal #basicModal="mdbModal" class="modal fade"
+    [config]="{ ignoreBackdropClick: true}"
+    tabindex="-1" role="dialog" 
+    aria-labelledby="myBasicModalLabel" 
+    aria-hidden="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Xóa người dùng </h4>
+      </div>
+      <div class="modal-body">
+          Bạn có đồng ý xóa người dùng  {{userEdit.name}} ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" outline="true" mdbBtn color="secondary" class="waves-light"
+         aria-label="Close" (click)="SuccessDeleteData();basicModal.hide();" mdbWavesEffect>Đồng ý</button>
+        <button type="button"  outline="true" mdbBtn color="primary" 
+          (click)="basicModal.hide();userEdit = {}"
+        class="relative waves-light" mdbWavesEffect>Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-sidebar-action-user 
+    [(data)]="userEdit" 
+    [(isSidebarActive)]="isSidebar"
+    (isSidebarActiveChange)="closeSidebar($event)"
+    (resetDataUpdate)="userEdit = $event"
+    (createUserEmit)="createUser($event)"
+    (updateUserEmit)="updateUser($event)"
+  >
+</app-sidebar-action-user>
+</div>

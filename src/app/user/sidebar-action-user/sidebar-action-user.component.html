@@ -1,0 +1,54 @@
+<div id="sidebar-user" [class]="isSidebarActive == true ? 'active' : ''">
+    <form (submit)="onSubmit($event)" [(formGroup)]="userForm">
+        <div class="sidebar-right">
+            <div class="header-sidebar p-3" style="border-bottom: 1px solid #e2e2e2">
+                <h3>{{ updateData == true ? 'Cập nhật' : 'Thêm mới'}} người dùng</h3>
+            </div>
+            <div class="content-sidebar p-3">
+                <!-- <input type="hidden" formControlName="id"> -->
+              <div class="group-avatar">
+                   <div class="avatar">
+                        <img *ngIf="urlImage != ''" class="image-avatar" [src]="urlImage" alt="avatar">
+                        <input type="file" class="upload-avatar" ref="avatar"
+                            (change)="handleFileInput($event)">
+                   </div>
+                </div>
+                <label for="username" class="">Tài khoản <span class="text-danger">(*)</span></label>
+                <input mdbInput type="text" id="username" 
+                    placeholder="Nhập tài khoản người dùng"
+                    minlength="8"
+                    class="form-control"
+                    formControlName="username"
+                    [disabled]="updateData"
+                    required >
+
+                <label for="name" class="">Họ & Tên <span class="text-danger">(*)</span></label>
+                <input mdbInput type="text" id="name" 
+                    placeholder="Nhập họ & tên người dùng"
+                    formControlName="name"
+                    class="form-control" > 
+
+                <label for="email" class="">Email <span class="text-danger">(*)</span></label>
+                <input mdbInput type="email" id="email" 
+                    placeholder="Nhập email người dùng"
+                    formControlName="email"
+                    class="form-control"
+                    required >
+
+                <label for="birthday" class="">Ngày sinh</label>
+                <input mdbInput type="date" id="birthday" 
+                        formControlName="birthday"
+                        class="form-control">
+
+            </div>
+            <div class="footer-sidebar p-3">
+                <button mdbBtn type="submit" outline="true" mdbWavesEffect
+                color="primary">
+                    {{updateData == true ? 'Cập nhật' : 'Thêm mới'}}
+                </button>
+                <button (click)="closeSidebar()" mdbBtn type="button" outline="true" color="warning">Đóng</button>
+            </div>
+        </div>
+    </form>
+
+</div>
